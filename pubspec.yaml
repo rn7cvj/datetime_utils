@@ -1,5 +1,5 @@
 name: datetime_utils 
-description: "datetime_utils"
+description: "A comprehensive Flutter package providing useful extensions and utilities for DateTime and TimeOfDay manipulation, comparison, and formatting."
 version: 1.0.0
 publish_to: pub.dev
 # homepage:

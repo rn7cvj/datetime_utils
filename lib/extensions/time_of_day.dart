@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 extension TimeOfDateExtension on TimeOfDay {
+  /// Checks if this TimeOfDay is between the start and end TimeOfDay (inclusive start, exclusive end).
   bool isBetween(TimeOfDay being, TimeOfDay end) {
     final thisMinutes = hour * 60 + minute;
     final startMinutes = being.hour * 60 + being.minute;
@@ -9,6 +10,7 @@ extension TimeOfDateExtension on TimeOfDay {
     return thisMinutes >= startMinutes && thisMinutes < endMinutes;
   }
 
+  /// Returns the difference between this TimeOfDay and the other TimeOfDay as a new TimeOfDay.
   TimeOfDay difference(TimeOfDay other) {
     final thisMinutes = hour * 60 + minute;
     final otherMinutes = other.hour * 60 + other.minute;
@@ -21,10 +23,12 @@ extension TimeOfDateExtension on TimeOfDay {
     return TimeOfDay(hour: hours, minute: minutes);
   }
 
+  /// Returns the total minutes since midnight for this TimeOfDay.
   int get inMinutes {
     return hour * 60 + minute;
   }
 
+  /// Formats this TimeOfDay as a string in HH:MM format.
   String formatTime() {
     return '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
   }
