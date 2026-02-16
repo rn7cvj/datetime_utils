@@ -33,6 +33,10 @@ extension DateTimeExtension on DateTime {
     return year == other.year && month == other.month;
   }
 
+  bool isSameYear(DateTime other) {
+    return year == other.year;
+  }
+
   /// Checks if this DateTime is between the start and end DateTimes (inclusive).
   bool isBetween(DateTime start, DateTime end) {
     return DateTimeCalculator.isBetween(this, start, end);
