@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 
 final class TimeOfDayClampCalculator {
-  /// Returns the total minutes since midnight for the given TimeOfDay.
-  static int inMinutes(TimeOfDay time) {
-    return time.hour * 60 + time.minute;
-  }
+  /// Clamps the given TimeOfDay between the provided minimum and maximum bounds.
+  static TimeOfDay clamp(TimeOfDay time, {TimeOfDay? min, TimeOfDay? max}) {
+    final timeMinutes = time.hour * 60 + time.minute;
+    final minMinutes = min == null ? null : min.hour * 60 + min.minute;
+    final maxMinutes = max == null ? null : max.hour * 60 + max.minute;
 
-  /// Formats the given TimeOfDay as a string in HH:MM format.
-  static String formatTime(TimeOfDay time) {
-    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
+    assert(minMinutes == null || maxMinutes == null || minMinutes <= maxMinutes);
+
+    if (min != null && timeMinutes < minMinutes!) {
+      return min;
+    }
+
+    if (max != null && timeMinutes > maxMinutes!) {
+      return max;
+    }
+
+    return time;
   }
 }

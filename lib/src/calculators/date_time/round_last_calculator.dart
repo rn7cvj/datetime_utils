@@ -1,4 +1,4 @@
-import 'clamp_calculator.dart';
+import 'info_calculator.dart';
 
 final class DateTimeRoundLastCalculator {
   /// Rounds the given DateTime to the end of the day (23:59:59).
@@ -13,7 +13,7 @@ final class DateTimeRoundLastCalculator {
 
   /// Rounds the given DateTime to the last day of the month.
   static DateTime roundToLastDayOfMonth(DateTime date) {
-    final daysInMonth = DateTimeClampCalculator.getDaysCountInMonth(
+    final daysInMonth = DateTimeInfoCalculator.getDaysCountInMonth(
       date.year,
       date.month,
     );

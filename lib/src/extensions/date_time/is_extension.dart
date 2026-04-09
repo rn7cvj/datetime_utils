@@ -1,5 +1,5 @@
 import '../../calculators/date_time.dart';
-import 'clamp_extension.dart';
+import 'info_extension.dart';
 
 extension DateTimeIsExtension on DateTime {
   /// Checks if this DateTime represents the same day as the other DateTime.

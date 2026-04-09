@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 export 'date_time/add_extension.dart';
 export 'date_time/clamp_extension.dart';
+export 'date_time/info_extension.dart';
 export 'date_time/is_extension.dart';
 export 'date_time/round_first_extension.dart';
 export 'date_time/round_last_extension.dart';
