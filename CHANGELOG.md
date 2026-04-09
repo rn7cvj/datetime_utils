@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.0.1] - 2026-04-09
+
+### Changed
+
+- Split `DateTime` and `TimeOfDay` calculators into grouped modules:
+  - `add`
+  - `subtract`
+  - `is`
+  - `round_first`
+  - `round_last`
+  - `clamp`
+  - `info`
+- Split `DateTime` and `TimeOfDay` extensions into the same grouped structure.
+- Replaced the old `substruct` typo with `subtract` in file names, exports, and public class names.
+- Reworked `clamp` calculators and extensions to provide real `clamp({min, max})` behavior.
+
+### Added
+
+- `DateTimeClampCalculator.clamp(date, {min, max})`
+- `TimeOfDayClampCalculator.clamp(time, {min, max})`
+- `DateTime.clamp({min, max})`
+- `TimeOfDay.clamp({min, max})`
+- `info` calculators and extensions for lookup-style helpers such as:
+  - `getDaysInMonth()`
+  - `getWeekNumber()`
+  - `inMinutes`
+  - `formatTime()`
+
+### Documentation
+
+- Updated `README.md` to match the current package structure and public API.
+
 ## [1.0.0] - 2025-09-17
 
 ### Added
