@@ -1,149 +1,158 @@
-# DateTime Utils
+# datetime_utils
 
-A comprehensive Flutter package that provides useful extensions and utilities for working with `DateTime` and `TimeOfDay` objects. This package simplifies common date and time operations, making it easier to manipulate, compare, and format dates and times in your Flutter applications.
+Flutter package with small, focused utilities for `DateTime` and `TimeOfDay`.
 
-## Features
+It provides:
+- extension methods for everyday usage
+- grouped calculators for static operations
+- helpers for add, subtract, round, clamp, checks, and info lookup
 
-- **DateTime Extensions**: Convenient methods for date manipulation, comparison, and rounding
-- **TimeOfDay Extensions**: Utilities for time comparison, difference calculation, and formatting
-- **Date Calculations**: Static methods for complex date arithmetic operations
-- **Date Validation**: Methods to check if dates fall within ranges or meet specific criteria
-- **Formatting**: Built-in time formatting utilities
+## Installation
 
-### DateTime Extensions
-
-- `today()` - Get the current date at midnight
-- `addMonths()` / `subtractMonths()` - Add or subtract months from a date
-- `isSameDay()` / `isSameMonth()` - Compare dates
-- `isBetween()` - Check if a date is within a range
-- `roundToFirstDayOfYear()` / `roundToLastDayOfYear()` - Round to year boundaries
-- `roundToFirstDayOfMonth()` / `roundToLastDayOfMonth()` - Round to month boundaries
-- `roundToFirstDayOfWeek()` / `roundToLastDayOfWeek()` - Round to week boundaries
-- `roundToDayStart()` / `roundToDayEnd()` - Round to day boundaries
-- `getDaysInMonth()` - Get the number of days in the current month
-- `getWeekNumber()` - Get the week number within the year
-- `isFirstDayOfYear()` / `isLastDayOfYear()` - Check year boundaries
-- `isFirstDayOfMonth()` / `isLastDayOfMonth()` - Check month boundaries
-- `isFirstDayOfWeek()` / `isLastDayOfWeek()` - Check week boundaries
-- `nextMonthDay()` - Get the first day of the next month
-
-### TimeOfDay Extensions
-
-- `isBetween()` - Check if time is within a range
-- `difference()` - Calculate time difference
-- `inMinutes` - Get total minutes since midnight
-- `formatTime()` - Format time as HH:MM string
-
-### DateTime Calculator
-
-- Static methods for date calculations and rounding operations
-
-## Getting Started
-
-Add this package to your `pubspec.yaml`:
+Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  datetime_utils: ^1.0.0
+  datetime_utils: ^1.0.1
 ```
 
-Import the package in your Dart code:
+Import it:
 
 ```dart
 import 'package:datetime_utils/datetime_utils.dart';
 ```
 
-## Usage
+## DateTime Extensions
 
-### Basic DateTime Operations
+Available groups:
+- base: `today()`, `getTimeOfDayOnly()`
+- add: `addMonths()`
+- subtract: `subtractMonths()`
+- is: `isSameDay()`, `isSameMonth()`, `isSameYear()`, `isBetween()`, `isFirstDayOfYear()`, `isLastDayOfYear()`, `isFirstDayOfMonth()`, `isLastDayOfMonth()`, `isFirstDayOfWeek()`, `isLastDayOfWeek()`
+- round first: `roundToDayStart()`, `roundToFirstDayOfYear()`, `roundToFirstDayOfMonth()`, `roundToFirstDayOfWeek()`
+- round last: `roundToDayEnd()`, `roundToLastDayOfYear()`, `roundToLastDayOfMonth()`, `roundToLastDayOfWeek()`
+- clamp: `clamp({min, max})`
+- info: `getDaysInMonth()`, `getWeekNumber()`, `nextMonthDay()`
 
-```dart
-import 'package:datetime_utils/datetime_utils.dart';
-
-void main() {
-  DateTime now = DateTime.now();
-
-  // Get today's date at midnight
-  DateTime today = now.today();
-
-  // Add 3 months to current date
-  DateTime futureDate = now.addMonths(3);
-
-  // Check if two dates are the same day
-  bool sameDay = now.isSameDay(DateTime(2024, 9, 17));
-
-  // Check if date is between two dates
-  bool inRange = now.isBetween(DateTime(2024, 1, 1), DateTime(2024, 12, 31));
-
-  // Get number of days in current month
-  int daysInMonth = now.getDaysInMonth();
-
-  // Round to first day of month
-  DateTime firstOfMonth = now.roundToFirstDayOfMonth();
-
-  // Get week number
-  int weekNumber = now.getWeekNumber();
-}
-```
-
-### TimeOfDay Operations
+Example:
 
 ```dart
 import 'package:datetime_utils/datetime_utils.dart';
 
 void main() {
-  TimeOfDay currentTime = TimeOfDay.now();
-  TimeOfDay startTime = TimeOfDay(hour: 9, minute: 0);
-  TimeOfDay endTime = TimeOfDay(hour: 17, minute: 0);
+  final now = DateTime.now();
 
-  // Check if current time is between working hours
-  bool isWorkingHours = currentTime.isBetween(startTime, endTime);
+  final today = now.today();
+  final future = now.addMonths(3);
+  final previous = now.subtractMonths(1);
 
-  // Calculate time difference
-  TimeOfDay diff = endTime.difference(startTime);
+  final isSameDay = now.isSameDay(DateTime(2026, 4, 9));
+  final inRange = now.isBetween(
+    DateTime(2026, 1, 1),
+    DateTime(2026, 12, 31),
+  );
 
-  // Get total minutes since midnight
-  int totalMinutes = currentTime.inMinutes;
+  final firstDayOfMonth = now.roundToFirstDayOfMonth();
+  final lastDayOfMonth = now.roundToLastDayOfMonth();
 
-  // Format time as string
-  String formatted = currentTime.formatTime(); // "14:30"
+  final clamped = now.clamp(
+    min: DateTime(2026, 1, 1),
+    max: DateTime(2026, 12, 31),
+  );
+
+  final daysInMonth = now.getDaysInMonth();
+  final weekNumber = now.getWeekNumber();
+  final nextMonth = now.nextMonthDay(1);
+  final time = now.getTimeOfDayOnly();
 }
 ```
 
-### Using DateTime Calculator
+## TimeOfDay Extensions
+
+Available groups:
+- add: `addMinutes()`
+- subtract: `difference()`
+- is: `isBetween()`
+- round first: `roundToHourStart()`
+- round last: `roundToHourEnd()`
+- clamp: `clamp({min, max})`
+- info: `inMinutes`, `formatTime()`
+
+Example:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:datetime_utils/datetime_utils.dart';
+
+void main() {
+  const current = TimeOfDay(hour: 14, minute: 30);
+  const start = TimeOfDay(hour: 9, minute: 0);
+  const end = TimeOfDay(hour: 18, minute: 0);
+
+  final isWorkingHours = current.isBetween(start, end);
+  final diff = end.difference(start);
+  final added = current.addMinutes(45);
+
+  final roundedStart = current.roundToHourStart();
+  final roundedEnd = current.roundToHourEnd();
+
+  final clamped = current.clamp(min: start, max: end);
+
+  final totalMinutes = current.inMinutes;
+  final formatted = current.formatTime();
+}
+```
+
+## Static Calculators
+
+You can also use grouped calculators directly.
+
+### DateTime
 
 ```dart
 import 'package:datetime_utils/datetime_utils.dart';
 
 void main() {
-  DateTime date = DateTime(2024, 9, 17);
+  final date = DateTime(2026, 4, 9, 15, 45);
 
-  // Round to day start
-  DateTime dayStart = DateTimeCalculator.roundToDayStart(date);
-
-  // Round to last day of year
-  DateTime yearEnd = DateTimeCalculator.roundToLastDayOfYear(date);
-
-  // Get days in specific month
-  int daysInFeb = DateTimeCalculator.getDaysCountInMonth(2024, 2); // 29 (leap year)
-
-  // Check if year is leap year
-  bool isLeap = DateTimeCalculator.isLeapYear(2024); // true
+  final added = DateTimeAddCalculator.addMonths(date, 2);
+  final rounded = DateTimeRoundLastCalculator.roundToLastDayOfMonth(date);
+  final clamped = DateTimeClampCalculator.clamp(
+    date,
+    min: DateTime(2026, 1, 1),
+    max: DateTime(2026, 12, 31),
+  );
+  final days = DateTimeInfoCalculator.getDaysCountInMonth(2026, 2);
+  final isLeap = DateTimeIsCalculator.isLeapYear(2028);
 }
 ```
 
-## Additional Information
+### TimeOfDay
 
-This package is designed to be lightweight and easy to use, providing common date and time utilities that are frequently needed in Flutter applications. All methods are well-documented and include comprehensive error handling.
+```dart
+import 'package:flutter/material.dart';
+import 'package:datetime_utils/datetime_utils.dart';
 
-### Contributing
+void main() {
+  const time = TimeOfDay(hour: 14, minute: 30);
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+  final added = TimeOfDayAddCalculator.addMinutes(time, 15);
+  final rounded = TimeOfDayRoundFirstCalculator.roundToHourStart(time);
+  final clamped = TimeOfDayClampCalculator.clamp(
+    time,
+    min: const TimeOfDay(hour: 9, minute: 0),
+    max: const TimeOfDay(hour: 18, minute: 0),
+  );
+  final minutes = TimeOfDayInfoCalculator.inMinutes(time);
+}
+```
 
-### Issues
+## Notes
 
-If you find any bugs or have feature requests, please create an issue on the GitHub repository.
+- `DateTime.isBetween()` is exclusive because it uses `isAfter()` and `isBefore()`.
+- `TimeOfDay.isBetween()` is inclusive for start and exclusive for end.
+- `clamp()` supports only `min`, only `max`, or both bounds.
 
-### License
+## License
 
-This package is licensed under the MIT License.
+MIT
