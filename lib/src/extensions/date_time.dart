@@ -10,12 +10,12 @@ extension DateTimeExtension on DateTime {
 
   /// Subtracts the specified number of months from this DateTime.
   DateTime subtractMonths(int count) {
-    return DateTimeCalculator.subtractMonths(this, count);
+    return DateTimeSubstructCalculator.subtractMonths(this, count);
   }
 
   /// Adds the specified number of months to this DateTime.
   DateTime addMonths(int count) {
-    return DateTimeCalculator.addMonths(this, count);
+    return DateTimeAddCalculator.addMonths(this, count);
   }
 
   /// Returns a TimeOfDay object representing the time part of this DateTime.
@@ -39,22 +39,22 @@ extension DateTimeExtension on DateTime {
 
   /// Checks if this DateTime is between the start and end DateTimes (inclusive).
   bool isBetween(DateTime start, DateTime end) {
-    return DateTimeCalculator.isBetween(this, start, end);
+    return DateTimeIsCalculator.isBetween(this, start, end);
   }
 
   /// Returns the number of days in the month of this DateTime.
   int getDaysInMonth() {
-    return DateTimeCalculator.getDaysCountInMonth(year, month);
+    return DateTimeClampCalculator.getDaysCountInMonth(year, month);
   }
 
   /// Returns the week number of this DateTime within the year.
   int getWeekNumber() {
-    return DateTimeCalculator.getWeekNumber(this);
+    return DateTimeClampCalculator.getWeekNumber(this);
   }
 
   /// Returns a new DateTime rounded to the first day of the year.
   DateTime roundToFirstDayOfYear() {
-    return DateTimeCalculator.roundToFirstDayOfYear(this);
+    return DateTimeRoundFirstCalculator.roundToFirstDayOfYear(this);
   }
 
   /// Checks if this DateTime is the first day of the year.
@@ -64,17 +64,17 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a new DateTime rounded to the start of the day (00:00:00).
   DateTime roundToDayStart() {
-    return DateTimeCalculator.roundToDayStart(this);
+    return DateTimeRoundFirstCalculator.roundToDayStart(this);
   }
 
   /// Returns a new DateTime rounded to the end of the day (23:59:59).
   DateTime roundToDayEnd() {
-    return DateTimeCalculator.roundToDayEnd(this);
+    return DateTimeRoundLastCalculator.roundToDayEnd(this);
   }
 
   /// Returns a new DateTime rounded to the last day of the year.
   DateTime roundToLastDayOfYear() {
-    return DateTimeCalculator.roundToLastDayOfYear(this);
+    return DateTimeRoundLastCalculator.roundToLastDayOfYear(this);
   }
 
   /// Checks if this DateTime is the last day of the year.
@@ -84,7 +84,7 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a new DateTime rounded to the first day of the month.
   DateTime roundToFirstDayOfMonth() {
-    return DateTimeCalculator.roundToFirstDayOfMonth(this);
+    return DateTimeRoundFirstCalculator.roundToFirstDayOfMonth(this);
   }
 
   /// Checks if this DateTime is the first day of the month.
@@ -94,7 +94,7 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a new DateTime rounded to the last day of the month.
   DateTime roundToLastDayOfMonth() {
-    return DateTimeCalculator.roundToLastDayOfMonth(this);
+    return DateTimeRoundLastCalculator.roundToLastDayOfMonth(this);
   }
 
   /// Checks if this DateTime is the last day of the month.
@@ -105,7 +105,7 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a new DateTime rounded to the first day of the week (Monday).
   DateTime roundToFirstDayOfWeek() {
-    return DateTimeCalculator.roundToFirstDayOfWeek(this);
+    return DateTimeRoundFirstCalculator.roundToFirstDayOfWeek(this);
   }
 
   /// Checks if this DateTime is the first day of the week (Monday).
@@ -115,7 +115,7 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a new DateTime rounded to the last day of the week (Sunday).
   DateTime roundToLastDayOfWeek() {
-    return DateTimeCalculator.roundToLastDayOfWeek(this);
+    return DateTimeRoundLastCalculator.roundToLastDayOfWeek(this);
   }
 
   /// Checks if this DateTime is the last day of the week (Sunday).
