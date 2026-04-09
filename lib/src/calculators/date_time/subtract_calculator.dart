@@ -1,4 +1,4 @@
-final class DateTimeSubstructCalculator {
+final class DateTimeSubtractCalculator {
   /// Subtracts the specified number of months from the given DateTime.
   static DateTime subtractMonths(DateTime date, int count) {
     assert(count >= 0);
