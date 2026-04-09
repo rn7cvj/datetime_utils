@@ -1,6 +1,6 @@
 name: datetime_utils
 description: "A comprehensive Flutter package providing useful extensions and utilities for DateTime and TimeOfDay manipulation, comparison, and formatting."
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/rn7cvj/datetime_utils
 
 environment:
@@ -15,4 +15,3 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-
